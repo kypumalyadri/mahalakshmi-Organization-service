@@ -1,10 +1,9 @@
 package com.gf.organisation.controller;
 
-import com.gf.organisation.entity.Business;
-import com.gf.organisation.service.BusinessService;
 import java.util.List;
+
 import javax.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gf.organisation.entity.Business;
+import com.gf.organisation.service.BusinessService;
+
+import lombok.extern.slf4j.Slf4j;
+
+
 
 @RestController
 @RequestMapping(value = "/businesses")
@@ -30,9 +36,7 @@ public class BusinessController {
   }
 
   @PostMapping(value = "/save")
-  public ResponseEntity<Business> createBusiness(
-    @Valid @RequestBody Business business
-  ) {
+  public ResponseEntity<Business> createBusiness( @Valid @RequestBody Business business ) {
     log.info("Creating a new business: {}", business);
     Business createdBusiness = businessService.createBusiness(business);
     log.info("New business created: {}", createdBusiness);
@@ -40,9 +44,7 @@ public class BusinessController {
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Business> getBusinessById(
-    @Valid @PathVariable Long id
-  ) {
+  public ResponseEntity<Business> getBusinessById( @Valid @PathVariable Long id) {
     log.info("Retrieving business with ID: {}", id);
     Business business = businessService.getBusinessById(id);
     if (business != null) {
@@ -62,10 +64,7 @@ public class BusinessController {
   }
 
   @PutMapping(value = "/update/{id}")
-  public ResponseEntity<Business> updateBusiness(
-    @Valid @PathVariable Long id,
-    @RequestBody Business business
-  ) {
+  public ResponseEntity<Business> updateBusiness( @Valid @PathVariable Long id, @RequestBody Business business) {
     log.info("Updating business with ID: {}", id);
     Business updatedBusiness = businessService.updateBusiness(id, business);
     if (updatedBusiness != null) {

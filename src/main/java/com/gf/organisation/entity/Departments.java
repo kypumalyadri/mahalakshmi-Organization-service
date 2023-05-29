@@ -71,8 +71,7 @@ public class Departments {
     private String streetAddress;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "BUSINESS_ID")
-    @Valid
+    @JoinColumn(name = "BUSINESS_UNITS")
     private Business business;
 
 }

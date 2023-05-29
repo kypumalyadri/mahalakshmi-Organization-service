@@ -5,14 +5,12 @@ package com.gf.organisation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
-import com.gf.organisation.entity.Organisation;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
-//@ComponentScan(basePackages = { "com.gf.organisationservice" })//
-//@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", basePackages = { "com.gf.organisationservice" })//
-/*@ComponentScan(basePackages = {"com.organisation.OrganisationServiceApplication"})*/
+
+@EnableJpaRepositories
 @OpenAPIDefinition(
 		  info = @Info(
 		    title = "Organisation API",

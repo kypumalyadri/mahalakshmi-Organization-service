@@ -7,11 +7,13 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gf.organisation.entity.LeavePolicy;
 import com.gf.organisation.repository.LeavePolicyRepository;
 import com.gf.organisation.service.LeavePolicyService;
 @Service
+@Transactional
 
 public class LeavePolicyImpl implements LeavePolicyService {
 	@Autowired

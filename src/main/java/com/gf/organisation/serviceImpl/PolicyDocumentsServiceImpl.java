@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gf.organisation.entity.PolicyDocuments;
 import com.gf.organisation.repository.PolicyDocumentsRepository;
@@ -16,6 +17,7 @@ import com.gf.organisation.service.PolicyDocumentsService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Transactional
 @Slf4j
 public class PolicyDocumentsServiceImpl implements PolicyDocumentsService {
     

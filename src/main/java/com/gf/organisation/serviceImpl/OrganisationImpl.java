@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gf.organisation.entity.Organisation;
 import com.gf.organisation.repository.OrganisationRepo;
@@ -16,7 +17,10 @@ import com.gf.organisation.service.OrganisationService;
 
 
 
+
+
 @Service
+@Transactional
 
 public class OrganisationImpl implements OrganisationService {
 	@Autowired

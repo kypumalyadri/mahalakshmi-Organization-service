@@ -7,12 +7,13 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gf.organisation.entity.Departments;
 import com.gf.organisation.repository.DepartmentsRepository;
 import com.gf.organisation.service.DepartmentsService;
 
-import jakarta.transaction.Transactional;
+
 
 @Service
 @Transactional

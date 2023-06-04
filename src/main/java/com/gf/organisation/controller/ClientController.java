@@ -54,7 +54,7 @@ public class ClientController {
             return new ResponseEntity<>(client, HttpStatus.OK);
         } else {
             logger.info("Client not found for id: {}", id);
-            return new ResponseEntity<>(client, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(client, HttpStatus.NO_CONTENT);
         }
     }
 
@@ -80,7 +80,7 @@ public class ClientController {
             return new ResponseEntity<>(updatedClient, HttpStatus.OK);
         } else {
             logger.info("Failed to update client with id: {}", id);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
@@ -95,7 +95,7 @@ public class ClientController {
             return new ResponseEntity<>(deletedClient, HttpStatus.OK);
         } else {
             logger.info("Failed to delete client with id: {}", id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 }

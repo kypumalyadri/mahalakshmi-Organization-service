@@ -50,7 +50,7 @@ public class LeavePolicyController {
             return new ResponseEntity<>(leavePolicy, HttpStatus.OK);
         } else {
             log.info("Leave Policy not found with ID: {}", id);
-            return new ResponseEntity<>(leavePolicy, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(leavePolicy, HttpStatus.NO_CONTENT);
         }
     }
 
@@ -76,7 +76,7 @@ public class LeavePolicyController {
             return new ResponseEntity<>(updatedLeavePolicy, HttpStatus.OK);
         } else {
             log.info("Failed to update Leave Policy with ID: {}", id);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
@@ -89,7 +89,7 @@ public class LeavePolicyController {
             return new ResponseEntity<>(deletedLeavePolicy, HttpStatus.OK);
         } else {
             log.info("Failed to delete Leave Policy with ID: {}", id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 

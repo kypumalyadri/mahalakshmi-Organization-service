@@ -47,10 +47,10 @@ public class AnnouncementsController {
         if (announcements.isPresent()) {
             Announcements getAnnouncements = announcements.get();
             log.info("Found announcement: {}", getAnnouncements);
-            return new ResponseEntity<>(getAnnouncements, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(getAnnouncements, HttpStatus.OK);
         } else {
             log.info("Announcement not found for ID: {}", id);
-            return new ResponseEntity<>(announcements, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(announcements, HttpStatus.NO_CONTENT);
         }
     }
 
@@ -60,7 +60,7 @@ public class AnnouncementsController {
         List<Announcements> announcements = announcementsService.getAllAnnouncements();
         if (announcements.isEmpty()) {
             log.info("No announcements found");
-            return new ResponseEntity<>(announcements, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(announcements, HttpStatus.NO_CONTENT);
         } else {
             log.info("Found {} announcements", announcements.size());
             return new ResponseEntity<>(announcements, HttpStatus.OK);
@@ -73,10 +73,10 @@ public class AnnouncementsController {
         Announcements updatedAnnouncements = announcementsService.updateAnnouncements(id, announcements);
         if (updatedAnnouncements != null) {
             log.info("Announcement updated: {}", updatedAnnouncements);
-            return new ResponseEntity<>(updatedAnnouncements, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(updatedAnnouncements, HttpStatus.OK);
         } else {
             log.info("Failed to update announcement");
-            return new ResponseEntity<>(updatedAnnouncements, HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(updatedAnnouncements, HttpStatus.NO_CONTENT);
         }
     }
 
@@ -89,7 +89,7 @@ public class AnnouncementsController {
             return new ResponseEntity<>(deletedAnnouncement, HttpStatus.OK);
         } else {
             log.info("Announcement not found for ID: {}", id);
-            return new ResponseEntity<>(deletedAnnouncement, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(deletedAnnouncement, HttpStatus.NO_CONTENT);
         }
     }
 }

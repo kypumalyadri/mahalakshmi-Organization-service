@@ -15,7 +15,7 @@ public interface DepartmentsService {
 
 	List<Departments> getAllDepartments();
 
-	Departments updateDepartments(@Valid Departments departments);
+	Departments updateDepartments( Long id, @Valid Departments departments);
 
 	Departments deletedDepartmentsById(@Valid long id);
 }

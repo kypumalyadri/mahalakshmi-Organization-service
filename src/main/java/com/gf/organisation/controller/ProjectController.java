@@ -47,7 +47,7 @@ public class ProjectController {
 		if (project.isPresent()) {
 			return new ResponseEntity<>(project, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(project, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(project, HttpStatus.NO_CONTENT);
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class ProjectController {
 		if (updateProject != null) {
 			return new ResponseEntity<>(updateProject, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(updateProject, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(updateProject, HttpStatus.NO_CONTENT);
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class ProjectController {
 		if (deleteProject != null) {
 			return new ResponseEntity<>(deleteProject, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(deleteProject, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(deleteProject, HttpStatus.NO_CONTENT);
 		}
 	}
 }

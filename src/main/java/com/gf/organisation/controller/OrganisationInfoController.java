@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gf.organisation.entity.Organisation;
-import com.gf.organisation.service.OrganisationService;
+import com.gf.organisation.entity.OrganisationInfo;
+import com.gf.organisation.service.OrganisationInfoService;
 
 
 
 @RestController
 @RequestMapping("/organisations")
 
-public class OrganisationController {
+public class OrganisationInfoController {
 	private static final String CORS_ORIGIN = "*";
 
     @Autowired
-    private OrganisationService organisationService;
+    private OrganisationInfoService organisationService;
 
     @PostMapping("/save")
     @CrossOrigin(origins = CORS_ORIGIN)
-    public ResponseEntity<Organisation> createOrganisation(@Valid @RequestBody Organisation organisation) {
+    public ResponseEntity<OrganisationInfo> createOrganisation(@Valid @RequestBody OrganisationInfo organisation) {
         try {
-            Organisation createdOrganisation = organisationService.createOrganisation(organisation);
+            OrganisationInfo createdOrganisation = organisationService.createOrganisation(organisation);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdOrganisation);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -47,8 +47,8 @@ public class OrganisationController {
 
     @GetMapping("/{id}")
 	@CrossOrigin(origins = CORS_ORIGIN)
-    public ResponseEntity<Optional<Organisation>> getOrganisationById(@Valid @PathVariable Long id) {
-        Optional<Organisation> organisation = organisationService.getOrganisationById(id);
+    public ResponseEntity<Optional<OrganisationInfo>> getOrganisationById(@Valid @PathVariable Long id) {
+        Optional<OrganisationInfo> organisation = organisationService.getOrganisationById(id);
         if (organisation.isPresent()) {
             return ResponseEntity.ok(organisation);
         } else {
@@ -58,20 +58,20 @@ public class OrganisationController {
 
     @GetMapping("/all")
 	@CrossOrigin(origins = CORS_ORIGIN)
-    public ResponseEntity<List<Organisation>> getAllOrganisations() {
-        List<Organisation> organisations = organisationService.getAllOrganisations();
+    public ResponseEntity<List<OrganisationInfo>> getAllOrganisations() {
+        List<OrganisationInfo> organisations = organisationService.getAllOrganisations();
         return ResponseEntity.ok(organisations);
     }
 
     @PutMapping("/update/{id}")
     @CrossOrigin(origins = CORS_ORIGIN)
-    public ResponseEntity<Organisation> updateOrganization(
+    public ResponseEntity<OrganisationInfo> updateOrganization(
             @PathVariable("id") Long id,
-            @Valid @RequestBody Organisation updatedOrganization) {
-        Optional<Organisation> existingOrganization = organisationService.getOrganisationById(id);
+            @Valid @RequestBody OrganisationInfo updatedOrganization) {
+        Optional<OrganisationInfo> existingOrganization = organisationService.getOrganisationById(id);
         if (existingOrganization.isPresent()) {
             updatedOrganization.setId(id);
-            Organisation updatedOrganisation = organisationService.updateOrganisation(updatedOrganization);
+            OrganisationInfo updatedOrganisation = organisationService.updateOrganisation(updatedOrganization);
             return ResponseEntity.ok(updatedOrganisation);
         } else {
             return ResponseEntity.notFound().build();
@@ -81,8 +81,8 @@ public class OrganisationController {
 
     @DeleteMapping("/{id}")
 	@CrossOrigin(origins = CORS_ORIGIN)
-    public ResponseEntity<Organisation> deleteOrganisation(@Valid @PathVariable Long id) {
-        Optional<Organisation> organisation = organisationService.getOrganisationById(id);
+    public ResponseEntity<OrganisationInfo> deleteOrganisation(@Valid @PathVariable Long id) {
+        Optional<OrganisationInfo> organisation = organisationService.getOrganisationById(id);
         if (organisation.isPresent()) {
             organisationService.deletebyOrganisation(id);
             return ResponseEntity.ok(organisation.get());

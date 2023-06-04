@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gf.organisation.entity.Organisation;
-import com.gf.organisation.repository.OrganisationRepo;
-import com.gf.organisation.service.OrganisationService;
+import com.gf.organisation.entity.OrganisationInfo;
+import com.gf.organisation.repository.OrganisationInfoRepo;
+import com.gf.organisation.service.OrganisationInfoService;
 
 
 
@@ -22,13 +22,13 @@ import com.gf.organisation.service.OrganisationService;
 @Service
 @Transactional
 
-public class OrganisationImpl implements OrganisationService {
+public class OrganisationInfoImpl implements OrganisationInfoService {
 	@Autowired
-	private OrganisationRepo organisationRepo;
+	private OrganisationInfoRepo organisationRepo;
 
 	@Override
-	public List<Organisation> getAllOrganisations() {
-		List<Organisation> organizations = organisationRepo.findAll();
+	public List<OrganisationInfo> getAllOrganisations() {
+		List<OrganisationInfo> organizations = organisationRepo.findAll();
 		if (!organizations.isEmpty()) {
 			return organizations;
 		} else {
@@ -38,13 +38,13 @@ public class OrganisationImpl implements OrganisationService {
 	}
 	@Override
 
-	public Organisation createOrganisation(@Valid Organisation organisation) {
+	public OrganisationInfo createOrganisation(@Valid OrganisationInfo organisation) {
 
 		return organisationRepo.save(organisation);
 	}
 @Override
-	public Optional<Organisation> getOrganisationById(@Valid Long id) {
-		Optional<Organisation> organization = organisationRepo.findById(id);
+	public Optional<OrganisationInfo> getOrganisationById(@Valid Long id) {
+		Optional<OrganisationInfo> organization = organisationRepo.findById(id);
 		if (organization.isPresent()) {
 			return organization;
 		} else {
@@ -53,8 +53,8 @@ public class OrganisationImpl implements OrganisationService {
 		}
 	}
 @Override
-public Organisation updateOrganisation(@Valid Organisation organization) {
-    Organisation updatedOrganization = organisationRepo.save(organization);
+public OrganisationInfo updateOrganisation(@Valid OrganisationInfo organization) {
+    OrganisationInfo updatedOrganization = organisationRepo.save(organization);
     if (updatedOrganization != null) {
         return updatedOrganization;
     } else {
@@ -64,10 +64,10 @@ public Organisation updateOrganisation(@Valid Organisation organization) {
 }
 
 @Override
-public Organisation deletebyOrganisation(@Valid Long id) {
-    Optional<Organisation> organisationOptional = organisationRepo.findById(id);
+public OrganisationInfo deletebyOrganisation(@Valid Long id) {
+    Optional<OrganisationInfo> organisationOptional = organisationRepo.findById(id);
     if (organisationOptional.isPresent()) {
-        Organisation organisation = organisationOptional.get();
+        OrganisationInfo organisation = organisationOptional.get();
         organisationRepo.delete(organisation);
         return organisation;
     } else {

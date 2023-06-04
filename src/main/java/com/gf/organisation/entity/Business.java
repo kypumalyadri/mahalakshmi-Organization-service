@@ -1,14 +1,17 @@
 package com.gf.organisation.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -59,4 +62,7 @@ public class Business {
     @Column(name = "STREET_ADDRESS", nullable = false)
     @NotNull(message = "street can not be null")
     private String streetAddress;
+    
+   // @OneToMany(mappedBy = "businessUnit", cascade = CascadeType.ALL)
+   // private List<Departments> departments;
 }

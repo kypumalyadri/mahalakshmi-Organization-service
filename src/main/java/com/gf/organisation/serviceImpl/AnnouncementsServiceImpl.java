@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gf.organisation.entity.Announcements;
-import com.gf.organisation.repository.AnnouncementsReopsitory;
+import com.gf.organisation.repository.AnnouncementsRepository;
 import com.gf.organisation.service.AnnouncementsService;
 
 
@@ -21,7 +21,7 @@ import com.gf.organisation.service.AnnouncementsService;
 public class AnnouncementsServiceImpl  implements AnnouncementsService{
 	
 	@Autowired
-	private AnnouncementsReopsitory announcementsReopsitory;
+	private AnnouncementsRepository announcementsReopsitory;
 	
 	@Override
 	public Announcements createAnnouncements(@Valid Announcements announcements) {

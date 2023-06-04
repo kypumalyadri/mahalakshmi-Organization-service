@@ -20,62 +20,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gf.organisation.entity.PolicyDocuments;
-import com.gf.organisation.service.PolicyDocumentsService;
+import com.gf.organisation.entity.CategoryPolicy;
+import com.gf.organisation.service.CategoryPolicyService;
 
 @RestController
 @RequestMapping(value = "/policy-documents")
-public class PolicyDocumentsController {
-    private static final Logger log = LoggerFactory.getLogger(PolicyDocumentsController.class);
+public class CategoryPolicyController {
+    private static final Logger log = LoggerFactory.getLogger(CategoryPolicyController.class);
 
     @Autowired
-    private PolicyDocumentsService policyDocumentsService;
+    private CategoryPolicyService categoryPolicyService;
 
     @PostMapping( value = "/create")
-    public ResponseEntity<PolicyDocuments> createPolicyDocument(@RequestBody @Valid PolicyDocuments policyDocument) {
+    public ResponseEntity<CategoryPolicy> createPolicyDocument(@RequestBody @Valid CategoryPolicy policyDocument) {
         log.info("Received request to create a new policy document: {}", policyDocument);
-        PolicyDocuments createdDocument = policyDocumentsService.createPolicyDocument(policyDocument);
+        CategoryPolicy createdDocument = categoryPolicyService.createPolicyDocument(policyDocument);
         return new ResponseEntity<>(createdDocument, HttpStatus.CREATED);
     }
 
     @GetMapping( value = "/{id}")
-    public ResponseEntity<PolicyDocuments> getPolicyDocumentById(@Valid @PathVariable Long id) {
+    public ResponseEntity<CategoryPolicy> getPolicyDocumentById(@Valid @PathVariable Long id) {
         log.info("Received request to retrieve policy document by ID: {}", id);
-        Optional<PolicyDocuments> policyDocumentOptional = policyDocumentsService.getPolicyDocumentById(id);
+        Optional<CategoryPolicy> policyDocumentOptional = categoryPolicyService.getPolicyDocumentById(id);
         return policyDocumentOptional.map(document -> new ResponseEntity<>(document, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<PolicyDocuments>> getAllPolicyDocuments() {
+    public ResponseEntity<List<CategoryPolicy>> getAllPolicyDocuments() {
         log.info("Received request to retrieve all policy documents");
-        List<PolicyDocuments> policyDocuments = policyDocumentsService.getAllPolicyDocuments();
-        if (!policyDocuments.isEmpty()) {
-            return new ResponseEntity<>(policyDocuments, HttpStatus.OK);
+        List<CategoryPolicy> categoryPolicy = categoryPolicyService.getAllPolicyDocuments();
+        if (!categoryPolicy.isEmpty()) {
+            return new ResponseEntity<>(categoryPolicy, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
     @PutMapping( value = "/update/{id}")
-    public ResponseEntity<PolicyDocuments> updatePolicyDocument( @PathVariable Long id, @RequestBody @Valid PolicyDocuments policyDocument) {
+    public ResponseEntity<CategoryPolicy> updatePolicyDocument( @PathVariable Long id, @RequestBody @Valid CategoryPolicy policyDocument) {
         log.info("Received request to update policy document with ID {}: {}", id, policyDocument);
-        PolicyDocuments updatedDocument = policyDocumentsService.updatePolicyDocument(id, policyDocument);
+        CategoryPolicy updatedDocument = categoryPolicyService.updatePolicyDocument(id, policyDocument);
         if (updatedDocument != null) {
             return new ResponseEntity<>(updatedDocument, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
     @DeleteMapping( value = "/delete/{id}")
-    public ResponseEntity<PolicyDocuments> deletePolicyDocument( @Valid @PathVariable Long id) {
+    public ResponseEntity<CategoryPolicy> deletePolicyDocument( @Valid @PathVariable Long id) {
         log.info("Received request to delete policy document with ID {}", id);
-        PolicyDocuments deletedDocument = policyDocumentsService.deletePolicyDocument(id);
+        CategoryPolicy deletedDocument = categoryPolicyService.deletePolicyDocument(id);
         if (deletedDocument != null) {
             return new ResponseEntity<>(deletedDocument, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 }

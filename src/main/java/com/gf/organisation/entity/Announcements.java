@@ -1,9 +1,7 @@
 package com.gf.organisation.entity;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -38,7 +38,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
     }
 
     @Override
-    public Departments updateDepartments(@Valid Departments departments) {
+    public Departments updateDepartments(Long id, @Valid Departments departments) {
         if (departmentsRepository.existsById(departments.getId())) {
             return departmentsRepository.save(departments);
         } else {

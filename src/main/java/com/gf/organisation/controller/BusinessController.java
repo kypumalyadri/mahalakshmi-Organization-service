@@ -54,7 +54,7 @@ public class BusinessController {
       return new ResponseEntity<>(business, HttpStatus.OK);
     }
     log.info("Business not found with ID: {}", id);
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
   @GetMapping(value = "/all")
@@ -74,7 +74,7 @@ public class BusinessController {
       return new ResponseEntity<>(updatedBusiness, HttpStatus.OK);
     }
     log.info("Business not found with ID: {}", id);
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
   @DeleteMapping(value = "/{id}")
@@ -86,6 +86,6 @@ public class BusinessController {
       return new ResponseEntity<>(deletedBusiness, HttpStatus.OK);
     }
     log.info("Business not found with ID: {}", id);
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

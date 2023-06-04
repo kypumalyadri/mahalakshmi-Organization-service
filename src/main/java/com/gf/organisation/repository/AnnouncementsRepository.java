@@ -7,6 +7,6 @@ import com.gf.organisation.entity.Announcements;
 
 @Repository
 
-public interface AnnouncementsReopsitory  extends JpaRepository<Announcements, Long>{
+public interface AnnouncementsRepository  extends JpaRepository<Announcements, Long>{
 
 }

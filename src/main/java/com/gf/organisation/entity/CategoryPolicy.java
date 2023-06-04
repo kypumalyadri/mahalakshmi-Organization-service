@@ -11,28 +11,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Table(name = "PolicyDocuments")
+@Table(name = "CategoryPolicy")
 @Data
 @ToString
-public class PolicyDocuments {
+public class CategoryPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CATEGORY", referencedColumnName = "CATEGORY")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CATEGORY", referencedColumnName = "LEAVE_POLICY_ID")
     private LeavePolicy leavePolicy;
 
     @Column(name = "DESCRIPTION", nullable = false)
     @NotNull(message = "Description cannot be null")
     private String description;
-
-
 }
 

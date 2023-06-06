@@ -24,7 +24,7 @@ import com.gf.organisation.entity.Announcements;
 import com.gf.organisation.service.AnnouncementsService;
 
 @RestController
-@RequestMapping(value = "/Announcements")
+@RequestMapping(value = "/announcements")
 @CrossOrigin(origins = "*")
 public class AnnouncementsController {
     private static final Logger log = LoggerFactory.getLogger(AnnouncementsController.class);

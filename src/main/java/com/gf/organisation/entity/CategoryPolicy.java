@@ -28,7 +28,7 @@ public class CategoryPolicy {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY", referencedColumnName = "LEAVE_POLICY_ID")
+    @JoinColumn(name = "CATEGORY", referencedColumnName = "CATEGORY")
     private LeavePolicy leavePolicy;
 
     @Column(name = "DESCRIPTION", nullable = false)

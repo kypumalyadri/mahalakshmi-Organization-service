@@ -24,7 +24,7 @@ import com.gf.organisation.entity.Project;
 import com.gf.organisation.service.ProjectService;
 
 @RestController
-@RequestMapping(value = "/Project")
+@RequestMapping(value = "/project")
 @CrossOrigin(origins = "*")
 public class ProjectController {
 

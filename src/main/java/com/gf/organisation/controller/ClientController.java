@@ -24,7 +24,7 @@ import com.gf.organisation.entity.Client;
 import com.gf.organisation.service.ClientService;
 
 @RestController
-@RequestMapping(value = "Client")
+@RequestMapping(value = "client")
 @CrossOrigin(origins = "*")
 public class ClientController {
     private static final Logger logger = LoggerFactory.getLogger(ClientController.class);

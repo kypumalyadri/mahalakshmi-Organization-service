@@ -2,7 +2,7 @@ name: organization-service
 on: 
  push: 
   branches: 
-   - workflow**
+   - github-**
  pull_request:
   branches:
     - dev

@@ -14,6 +14,7 @@ jobs:
   build:
    name: springboot-app
    runs-on: ubuntu-24.04
+   environment: DEV
    permissions: 
     contents: read
     packages: write

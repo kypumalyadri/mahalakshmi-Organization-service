@@ -41,11 +41,13 @@ jobs:
          azPSVersion: "latest"
          inlineScript: |
            Get-AzContext
-     - uses: dienha93/maven-actions@v1.0.0
-       name: maven-build
+     - name: Set up Java
+       uses: actions/setup-java@v4
        with:
+         distribution: temurin
          java-version: 17
-         operation: "package -DskipTests"
+     - name: Build without tests
+       run: mvn -B -DskipTests package
      - name: Login to GitHub Container Registry
        uses: docker/login-action@v4
        with:

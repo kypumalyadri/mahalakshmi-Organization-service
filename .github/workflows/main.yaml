@@ -7,8 +7,8 @@ on:
   branches:
     - dev
  schedule:
-   - cron: '30 5 * * *'
-     timezone: "America/New_York"
+    - cron: '30 5 * * *'
+      timezone: "America/New_York"
 
 jobs:
   build:

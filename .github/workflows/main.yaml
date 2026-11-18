@@ -2,13 +2,13 @@ name: organization-service
 on: 
  push: 
   branches: 
-    - **feature
- pull_request:
+    - feature**
+  pull_request:
   branches:
     - dev
- schedule:
-   - cron: '30 5 * * *'
-     timezone: "America/New_York"
+  schedule:
+    - cron: '30 5 * * *'
+      timezone: "America/New_York"
 
 jobs:
   build:
@@ -22,9 +22,3 @@ jobs:
        with:
          java-version: 17
          operation: package
-       
-
-
-
-
- 

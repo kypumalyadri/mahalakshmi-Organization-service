@@ -53,6 +53,6 @@ jobs:
         az acr login --name ${{ secrets.ACR_NAME }}
         az acr build \
            --registry "${{ secrets.ACR_NAME }}" \
-           --image "${{ secrets.ACR_REPO }}/org-service:${{ vars.IMAGE_VERSION }}" \
+           --image "knockfashion:/org-service-${{ vars.IMAGE_VERSION }}" \
            --file Dockerfile \
            .

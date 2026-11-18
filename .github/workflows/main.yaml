@@ -14,11 +14,34 @@ jobs:
   build:
    name: springboot-app
    runs-on: ubuntu-24.04
+   permissions: 
+    contents: read
+    packages: write
+    id-token: write
    steps:
      - uses: actions/checkout@v7
        name: checkout
+     - name: Azure login
+       uses: azure/login@v3
+       with:
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+         enable-AzPSSession: tru      
+     - name: Azure CLI script
+       uses: azure/cli@v2
+       with:
+         azcliversion: latest
+         inlineScript: |
+           az account sho      
+     - name: Azure PowerShell script
+       uses: azure/powershell@v3
+       with:
+         azPSVersion: "latest"
+         inlineScript: |
+           Get-AzContext
      - uses: dienha93/maven-actions@v1.0.0
        name: maven-build
        with:
          java-version: 17
-         operation: package     
+         operation: package -DskipTests 

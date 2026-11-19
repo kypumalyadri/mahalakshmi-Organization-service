@@ -1,0 +1,58 @@
+on: 
+ workflow_call: 
+  inputs:
+    java-version:
+     type: string
+     required: true
+    service-name:
+      type: string
+      required: true
+    image_version:
+     type: string
+     required: true
+    command:
+     type: string
+     required: true
+    environment:
+     type: string
+     required: true
+    repository:
+     type: string
+     required: true
+    
+jobs:
+  build:
+   name: CI
+   runs-on: ubuntu-24.04
+   environment: ${{inputs.environment}}
+   steps:
+     - name: checkout
+       uses: actions/checkout@v7
+     - name: java
+       uses: actions/setup-java@v5
+       with:
+         distribution: temurin
+         java-version: ${{ inputs.java-version }}
+     - name: maven-build
+       run: ${{inputs.command}}
+
+     - name: Azure login
+       uses: azure/login@v3
+       with:
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+     - name: Azure CLI script
+       uses: azure/cli@v2
+       with:
+         azcliversion: latest
+         inlineScript: |
+           az account show     
+     - name: acr-login
+       run: |
+        az acr login --name ${{ secrets.ACR_NAME }}
+        az acr build \
+           --registry "${{ secrets.ACR_NAME }}" \
+           --image "knockfashion:${{ inputs.service-name }}-${{ inputs.image_version  }}" \
+           --file Dockerfile \
+           .

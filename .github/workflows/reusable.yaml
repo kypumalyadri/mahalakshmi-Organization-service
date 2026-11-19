@@ -54,4 +54,4 @@ jobs:
         az acr build \
            --registry "${{ secrets.ACR_NAME }}" \
            --image "knockfashion:${{ inputs.service-name }}-${{ inputs.image_version  }}" \
-           --file Dockerfile \   
+           --file Dockerfile \ .  
